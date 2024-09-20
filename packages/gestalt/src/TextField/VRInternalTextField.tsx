@@ -1,6 +1,5 @@
 import {
   forwardRef,
-  Fragment,
   ReactElement,
   ReactNode,
   useCallback,
@@ -16,6 +15,7 @@ import boxStyles from '../Box.css';
 import FormErrorMessage from '../sharedSubcomponents/FormErrorMessage';
 import FormHelperText from '../sharedSubcomponents/FormHelperText';
 import { MaxLength } from '../TextField';
+import TextUI from '../TextUI';
 import typographyStyle from '../Typography.css';
 
 type SizeType = 'sm' | 'md' | 'lg';
@@ -69,7 +69,7 @@ const InternalTextFieldWithForwardRef = forwardRef<HTMLInputElement, Props>(func
     id,
     iconButton,
     label,
-    labelDisplay,
+    labelDisplay = 'visible',
     max,
     maxLength,
     mobileEnterKeyHint,
@@ -94,7 +94,7 @@ const InternalTextFieldWithForwardRef = forwardRef<HTMLInputElement, Props>(func
   ref,
 ) {
   const innerRef = useRef<null | HTMLInputElement>(null);
-  const labelRef = useRef<null | HTMLLabelElement>(null);
+  const labelRef = useRef<null | HTMLDivElement>(null);
 
   // @ts-expect-error - TS2322 - Type 'HTMLDivElement | HTMLInputElement | null' is not assignable to type 'HTMLInputElement'.
   useImperativeHandle(ref, () => innerRef.current);
@@ -148,14 +148,11 @@ const InternalTextFieldWithForwardRef = forwardRef<HTMLInputElement, Props>(func
   }, [label, checkEllipsisActive]);
 
   return (
-    <Fragment>
+    <div>
       <div className={classnames(styles.inputParent)}>
         {label && (
           <label
-            ref={labelRef}
-            className={classnames(styles.label, typographyStyle.truncate, {
-              [styles.enabledText]: !disabled,
-              [styles.disabledText]: disabled,
+            className={classnames(styles.label, {
               // sm
               [styles.sm_label]: isSM,
               [styles.sm_labelPos]: isSM,
@@ -169,9 +166,16 @@ const InternalTextFieldWithForwardRef = forwardRef<HTMLInputElement, Props>(func
               [boxStyles.visuallyHidden]: !isLabelVisible,
             })}
             htmlFor={id}
-            title={ellipsisActive ? label : ''}
           >
-            {label}
+            <TextUI
+              ref={labelRef}
+              color={disabled ? 'disabled' : 'default'}
+              lineClamp={1}
+              size="xs"
+              title={ellipsisActive ? label : ''}
+            >
+              {label}
+            </TextUI>
           </label>
         )}
         <input
@@ -257,7 +261,7 @@ const InternalTextFieldWithForwardRef = forwardRef<HTMLInputElement, Props>(func
       {!disabled && hasErrorMessage ? (
         <FormErrorMessage id={`${id}-error`} size={size} text={errorMessage} />
       ) : null}
-    </Fragment>
+    </div>
   );
 });
 

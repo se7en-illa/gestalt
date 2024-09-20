@@ -1,15 +1,9 @@
 import { Cache } from './Cache';
+import { getHeightAndGutter, offscreen } from './layoutHelpers';
 import { isLoadingStateItem, isLoadingStateItems } from './loadingStateUtils';
 import mindex from './mindex';
 import multiColumnLayout, { ColumnSpanConfig } from './multiColumnLayout';
 import { Align, Layout, LoadingStateItem, Position } from './types';
-
-const offscreen = (width: number, height: number = Infinity) => ({
-  top: -9999,
-  left: -9999,
-  width,
-  height,
-});
 
 const calculateCenterOffset = ({
   align,
@@ -100,28 +94,22 @@ const defaultLayout =
           _getColumnSpanConfig,
           ...otherProps,
         })
-      : items.reduce<Array<any>>((acc, item) => {
-          let position;
-
-          const positions = acc;
+      : items.map((item) => {
           const height = isLoadingStateItem(item, renderLoadingState)
             ? item.height
             : measurementCache.get(item);
 
           if (height == null) {
-            position = offscreen(columnWidth);
-          } else {
-            const heightAndGutter = height + gutter;
-            const col = mindex(heights);
-            const top = heights[col];
-            const left = col * columnWidthAndGutter + centerOffset;
-
-            heights[col] += heightAndGutter;
-            position = { top, left, width: columnWidth, height };
+            return offscreen(columnWidth);
           }
-          positions.push(position);
-          return positions;
-        }, []);
+          const heightAndGutter = getHeightAndGutter(height, gutter);
+          const col = mindex(heights);
+          const top = heights[col]!;
+          const left = col * columnWidthAndGutter + centerOffset;
+
+          heights[col] = heights[col]! + heightAndGutter;
+          return { top, left, width: columnWidth, height };
+        });
   };
 
 export default defaultLayout;

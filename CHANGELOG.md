@@ -1,3 +1,153 @@
+## 159.9.1 (Sep 20, 2024)
+
+### Patch
+
+- Tabs: Revert "Tabs: VR implementation changes ([#3763](https://github.com/pinterest/gestalt/pull/3763)) - [Preview link](https://deploy-preview-3763--gestalt.netlify.app?devexample=true)" ([#3769](https://github.com/pinterest/gestalt/pull/3769)) - [Preview link](https://deploy-preview-3769--gestalt.netlify.app?devexample=true)
+
+## 159.9.0 (Sep 18, 2024)
+
+### Minor
+
+- Tabs: VR implementation changes ([#3763](https://github.com/pinterest/gestalt/pull/3763)) - [Preview link](https://deploy-preview-3763--gestalt.netlify.app?devexample=true)
+
+## 159.8.2 (Sep 18, 2024)
+
+### Patch
+
+- IconButton: refactor to prevent snapshot change ([#3764](https://github.com/pinterest/gestalt/pull/3764)) - [Preview link](https://deploy-preview-3764--gestalt.netlify.app?devexample=true)
+
+## 159.8.1 (Sep 16, 2024)
+
+### Patch
+
+- SearchField: VR implementation changes ([#3762](https://github.com/pinterest/gestalt/pull/3762)) - [Preview link](https://deploy-preview-3762--gestalt.netlify.app?devexample=true)
+
+## 159.8.0 (Sep 13, 2024)
+
+### Minor
+
+- DateField: VR implementation changes ([#3761](https://github.com/pinterest/gestalt/pull/3761)) - [Preview link](https://deploy-preview-3761--gestalt.netlify.app?devexample=true)
+
+## 159.7.0 (Sep 13, 2024)
+
+### Minor
+
+- NumberField: VR implementation changes ([#3760](https://github.com/pinterest/gestalt/pull/3760)) - [Preview link](https://deploy-preview-3760--gestalt.netlify.app?devexample=true)
+
+## 159.6.8 (Sep 13, 2024)
+
+### Patch
+
+- ButtonToggle: adopted TextUI ([#3759](https://github.com/pinterest/gestalt/pull/3759)) - [Preview link](https://deploy-preview-3759--gestalt.netlify.app?devexample=true)
+
+## 159.6.7 (Sep 13, 2024)
+
+### Patch
+
+- TextArea, TextField, SelectList: adopted TextBody ([#3758](https://github.com/pinterest/gestalt/pull/3758)) - [Preview link](https://deploy-preview-3758--gestalt.netlify.app?devexample=true)
+
+## 159.6.6 (Sep 12, 2024)
+
+### Patch
+
+- TextField, TextArea, ComboBox: adopted TextUI in TagArea ([#3754](https://github.com/pinterest/gestalt/pull/3754)) - [Preview link](https://deploy-preview-3754--gestalt.netlify.app?devexample=true)
+
+## 159.6.5 (Sep 12, 2024)
+
+### Patch
+
+- TextArea: adopted TextUI ([#3752](https://github.com/pinterest/gestalt/pull/3752)) - [Preview link](https://deploy-preview-3752--gestalt.netlify.app?devexample=true)
+
+## 159.6.4 (Sep 12, 2024)
+
+### Patch
+
+- TextField, ComboBox: adopted TextUI ([#3751](https://github.com/pinterest/gestalt/pull/3751)) - [Preview link](https://deploy-preview-3751--gestalt.netlify.app?devexample=true)
+
+## 159.6.3 (Sep 12, 2024)
+
+### Patch
+
+- SelectList: adopted TextUI ([#3757](https://github.com/pinterest/gestalt/pull/3757)) - [Preview link](https://deploy-preview-3757--gestalt.netlify.app?devexample=true)
+
+## 159.6.2 (Sep 12, 2024)
+
+### Patch
+
+- Badge: adopted TextUI ([#3749](https://github.com/pinterest/gestalt/pull/3749)) - [Preview link](https://deploy-preview-3749--gestalt.netlify.app?devexample=true)
+
+## 159.6.1 (Sep 12, 2024)
+
+### Patch
+
+- Internal: Improve index access type safety with `noUncheckedIndexedAccess` ([#3756](https://github.com/pinterest/gestalt/pull/3756)) - [Preview link](https://deploy-preview-3756--gestalt.netlify.app?devexample=true)
+
+## 159.6.0 (Sep 11, 2024)
+
+### Minor
+
+- IconButton: VR Implementation + adopted TextUI ([#3720](https://github.com/pinterest/gestalt/pull/3720)) - [Preview link](https://deploy-preview-3720--gestalt.netlify.app?devexample=true)
+
+## 159.5.3 (Sep 11, 2024)
+
+### Patch
+
+- Sticky: Updating Types to avoid Prop Issues ([#3745](https://github.com/pinterest/gestalt/pull/3745)) - [Preview link](https://deploy-preview-3745--gestalt.netlify.app?devexample=true)
+
+## 159.5.2 (Sep 11, 2024)
+
+### Patch
+
+- Internal: Upgrade TypeScript to 5.6 ([#3748](https://github.com/pinterest/gestalt/pull/3748)) - [Preview link](https://deploy-preview-3748--gestalt.netlify.app?devexample=true)
+
+## 159.5.1 (Sep 11, 2024)
+
+### Patch
+
+- Internal: Bump express from 4.19.2 to 4.20.0 ([#3746](https://github.com/pinterest/gestalt/pull/3746)) - [Preview link](https://deploy-preview-3746--gestalt.netlify.app?devexample=true)
+
+## 159.5.0 (Sep 10, 2024)
+
+### Minor
+
+- BannerOverlay: enabled `reverseOffset` in `offset` for custom positioining ([#3743](https://github.com/pinterest/gestalt/pull/3743)) - [Preview link](https://deploy-preview-3743--gestalt.netlify.app?devexample=true)
+
+## 159.4.1 (Sep 10, 2024)
+
+### Patch
+
+- Masonry: Ensure zero height items dont have a gutter ([#3742](https://github.com/pinterest/gestalt/pull/3742)) - [Preview link](https://deploy-preview-3742--gestalt.netlify.app?devexample=true)
+
+## 159.4.0 (Sep 10, 2024)
+
+### Minor
+
+- Text: VR implementation ([#3741](https://github.com/pinterest/gestalt/pull/3741)) - [Preview link](https://deploy-preview-3741--gestalt.netlify.app?devexample=true)
+
+## 159.3.0 (Sep 10, 2024)
+
+### Minor
+
+- TextUI, TextCompact: new components in classic & Visual Refresh ([#3740](https://github.com/pinterest/gestalt/pull/3740)) - [Preview link](https://deploy-preview-3740--gestalt.netlify.app?devexample=true)
+
+## 159.2.1 (Sep 9, 2024)
+
+### Patch
+
+- DatePicker: VR implementation changes ([#3737](https://github.com/pinterest/gestalt/pull/3737)) - [Preview link](https://deploy-preview-3737--gestalt.netlify.app?devexample=true)
+
+## 159.2.0 (Sep 9, 2024)
+
+### Minor
+
+- Heading: VR Implementation ([#3739](https://github.com/pinterest/gestalt/pull/3739)) - [Preview link](https://deploy-preview-3739--gestalt.netlify.app?devexample=true)
+
+## 159.1.0 (Sep 6, 2024)
+
+### Minor
+
+- Icon: Update Icons [GESTALT-8366] ([#3732](https://github.com/pinterest/gestalt/pull/3732)) - [Preview link](https://deploy-preview-3732--gestalt.netlify.app?devexample=true)
+
 ## 159.0.0 (Sep 5, 2024)
 
 ### Major

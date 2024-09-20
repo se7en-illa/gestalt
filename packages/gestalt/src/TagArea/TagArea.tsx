@@ -19,7 +19,7 @@ import Flex from '../Flex';
 import FormErrorMessage from '../sharedSubcomponents/FormErrorMessage';
 import FormHelperText from '../sharedSubcomponents/FormHelperText';
 import { MaxLength } from '../TextField';
-import typographyStyle from '../Typography.css';
+import TextUI from '../TextUI';
 import useInteractiveStates from '../utils/useInteractiveStates';
 
 type Props = {
@@ -81,7 +81,7 @@ const TagAreaWithForwardRef = forwardRef<HTMLTextAreaElement, Props>(function Ta
   ref,
 ) {
   const innerRef = useRef<null | HTMLDivElement>(null);
-  const labelRef = useRef<null | HTMLLabelElement>(null);
+  const labelRef = useRef<null | HTMLDivElement>(null);
 
   // @ts-expect-error - TS2322 - Type 'HTMLDivElement | HTMLTextAreaElement | null' is not assignable to type 'HTMLTextAreaElement'.
   useImperativeHandle(ref, () => innerRef.current);
@@ -182,8 +182,7 @@ const TagAreaWithForwardRef = forwardRef<HTMLTextAreaElement, Props>(function Ta
         >
           {label && (
             <label
-              ref={labelRef}
-              className={classnames(styles.label, typographyStyle.truncate, {
+              className={classnames(styles.label, {
                 // sm
                 [styles.sm_label]: isSM,
                 [styles.sm_labelPos]: isSM,
@@ -196,9 +195,16 @@ const TagAreaWithForwardRef = forwardRef<HTMLTextAreaElement, Props>(function Ta
                 [boxStyles.visuallyHidden]: !isLabelVisible,
               })}
               htmlFor={id}
-              title={ellipsisActive ? label : ''}
             >
-              {label}
+              <TextUI
+                ref={labelRef}
+                color={disabled ? 'disabled' : 'default'}
+                lineClamp={1}
+                size="xs"
+                title={ellipsisActive ? label : ''}
+              >
+                {label}
+              </TextUI>
             </label>
           )}
           <Flex gap={1}>
@@ -227,7 +233,14 @@ const TagAreaWithForwardRef = forwardRef<HTMLTextAreaElement, Props>(function Ta
                   // checking for "focused" is not required by screenreaders but it prevents a11y integration tests to complain about missing label, as aria-describedby seems to shadow label in tests though it's a W3 accepeted pattern https://www.w3.org/TR/WCAG20-TECHS/ARIA1.html
                   aria-describedby={isFocused ? ariaDescribedby : undefined}
                   aria-invalid={hasErrorMessage || hasError ? 'true' : 'false'}
-                  className={classnames(styles.input)}
+                  className={classnames(styles.input, {
+                    // sm
+                    [styles.sm_input_text]: isSM,
+                    // md
+                    [styles.md_input_text]: isMD,
+                    // lg
+                    [styles.lg_input_text]: isLG,
+                  })}
                   data-test-id={dataTestId}
                   disabled={disabled}
                   id={id}
