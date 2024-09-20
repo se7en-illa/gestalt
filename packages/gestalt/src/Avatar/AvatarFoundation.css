@@ -1,0 +1,44 @@
+.container {
+  position: relative;
+  padding-bottom: 100%;
+  border-radius: 50%;
+}
+.outline {
+  box-shadow: 0 0 0 1px var(--token-color-border-avatar); /* replace --token-color-border-avatar with the actual value */
+}
+
+.outline-VR {
+  box-shadow: 0 0 0 2px var(--token-color-border-avatar); /* replace --token-color-border-avatar with the actual value */
+}
+
+.focused {
+  border-radius: var(--sema-rounding-400);
+  border: 2px solid var(--sema-color-border-focus-inner-default);
+  outline: 2px solid var(--sema-color-border-focus-outer-default);
+}
+
+.innerDiv {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.defaultBackground {
+  background-color: var(--token-color-background-avatar); /* replace --token-color-background-avatar with the actual value */
+}
+
+.text {
+  color: var(--color-icon-avatar-default);
+}
+
+.svgBackground {
+  background-color: yellow;
+}
+
+.iconBackground {
+  background-color: green;
+}

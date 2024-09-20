@@ -17,11 +17,22 @@ const sizes = {
   xl: 120,
 } as const;
 
-type Props = {
+interface InternalProps {
+  isFocused?: boolean;
+  isFocusVisible?: boolean;
+  isHovered?: boolean;
+  isPressed?: boolean;
+}
+
+interface DocumentedProps {
   /**
    * String that clients such as VoiceOver will read to describe the element. Will default to `name` prop if not provided.
    */
   accessibilityLabel?: string;
+  /**
+   * The background color chosen by the user. A default color will be used if none is selected.
+   */
+  avatarColorIndex?: string;
   /**
    * The name of the user. This is used for the placeholder treatment if an image is not available.
    */
@@ -44,6 +55,8 @@ type Props = {
   verified?: boolean;
 };
 
+type Props = DocumentedProps & Partial<InternalProps>;
+
 /**
  * [Avatar](https://gestalt.pinterest.systems/web/avatar) is used to represent a user. Every Avatar image has a subtle color wash.
  *
@@ -54,7 +67,7 @@ type Props = {
 
 function Avatar(props: Props) {
   const [isImageLoaded, setIsImageLoaded] = useState(true);
-  const { accessibilityLabel, name, outline, size = 'fit', src, verified } = props;
+  const { accessibilityLabel, avatarColorIndex, isFocused, isFocusVisible, isHovered, isPressed, name, outline, size = 'fit', src, verified } = props;
   const width = size === 'fit' ? '100%' : sizes[size];
   const height = size === 'fit' ? '' : sizes[size];
 
@@ -78,7 +91,7 @@ function Avatar(props: Props) {
       width={width}
     >
       {src && isImageLoaded ? (
-        <Mask rounding="circle" wash>
+        <Mask rounding="circle" wash>  {/* need to handle focus outline here */}
           <Image
             alt={accessibilityLabel ?? name}
             color={TOKEN_COLOR_BACKGROUND_AVATAR_PLACEHOLDER}
@@ -89,7 +102,15 @@ function Avatar(props: Props) {
           />
         </Mask>
       ) : (
-        <DefaultAvatar accessibilityLabel={accessibilityLabel} name={name} />
+        <DefaultAvatar
+          accessibilityLabel={accessibilityLabel}
+          avatarColorIndex={avatarColorIndex}
+          isFocused={isFocused}
+          isFocusVisible={isFocusVisible}
+          isHovered={isHovered}
+          isPressed={isPressed}
+          name={name}
+        />
       )}
 
       {verified && (

@@ -1,3 +1,4 @@
+import { useDangerouslyInGestaltExperiment } from 'gestalt';
 import AccessibilitySection from '../../docs-components/AccessibilitySection';
 import docGen, { DocGen } from '../../docs-components/docgen';
 import GeneratedPropTable from '../../docs-components/GeneratedPropTable';
@@ -8,6 +9,7 @@ import Page from '../../docs-components/Page';
 import PageHeader from '../../docs-components/PageHeader';
 import QualityChecklist from '../../docs-components/QualityChecklist';
 import SandpackExample from '../../docs-components/SandpackExample';
+import colorExample from '../../examples/avatar/colorExample';
 import containerExample from '../../examples/avatar/containerExample';
 import ideasExample from '../../examples/avatar/ideasExample';
 import mainExample from '../../examples/avatar/mainExample';
@@ -21,6 +23,11 @@ import sizingExample from '../../examples/avatar/sizingExample';
 import verifiedExample from '../../examples/avatar/verifiedExample';
 
 export default function AvatarPage({ generatedDocGen }: { generatedDocGen: DocGen }) {
+  const isInVRExperiment = useDangerouslyInGestaltExperiment({
+    webExperimentName: 'web_gestalt_visualRefresh',
+    mwebExperimentName: 'web_gestalt_visualRefresh',
+  });
+
   return (
     <Page title={generatedDocGen?.displayName}>
       <PageHeader
@@ -56,6 +63,28 @@ export default function AvatarPage({ generatedDocGen }: { generatedDocGen: DocGe
           />
         </MainSection.Subsection>
       </MainSection>
+      {isInVRExperiment && (
+        <MainSection name="Color Examples">
+          <MainSection.Subsection columns={2}>
+            <MainSection.Card
+              cardSize="md"
+              description={`
+          - To reflect a person, company or brand within the product.
+        `}
+              sandpackExample={
+                <SandpackExample
+                  code={colorExample}
+                  hideEditor
+                  name="Color Examples"
+                  previewHeight={200}
+                />
+              }
+              title="When to use"
+              type="do"
+            />
+          </MainSection.Subsection>
+        </MainSection>
+      )}
       <MainSection name="Best Practices">
         <MainSection.Subsection columns={2}>
           <MainSection.Card

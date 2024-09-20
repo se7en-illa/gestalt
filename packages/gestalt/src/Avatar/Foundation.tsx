@@ -1,52 +1,52 @@
 import { ReactNode } from 'react';
 import classnames from 'classnames';
-import { TOKEN_COLOR_BORDER_AVATAR, TOKEN_COLOR_TEXT_DEFAULT } from 'gestalt-design-tokens';
+import { TOKEN_COLOR_TEXT_DEFAULT } from 'gestalt-design-tokens';
+import foundationStyles from './AvatarFoundation.css';
+import getAvatarColorToken from './getAvatarColorToken';
 import avatarStyles from '../AvatarGroup.css';
-import Box from '../Box';
 import styles from '../Icon.css';
 import icons from '../icons/index';
 import vrIcons from '../icons-vr-theme/index';
 import typographyStyle from '../Typography.css';
 import useInExperiment from '../useInExperiment';
+import TextUI from '../'
 
 const ICON_SIZE_RATIO = (20 / 48) * 100; // For pixel perfect icon button, we use the icon (20px) to parent container (48px) size ratio
 
 type ResponsiveFitSizeBoxProps = {
+  avatarColorIndex?: string;
   children: ReactNode;
   outline: boolean;
 };
 
-function ResponsiveFitSizeBox({ children, outline }: ResponsiveFitSizeBoxProps) {
+function ResponsiveFitSizeBox({ avatarColorIndex, children, outline }: ResponsiveFitSizeBoxProps) {
+  const isInVRExperiment = useInExperiment({
+    webExperimentName: 'web_gestalt_visualRefresh',
+    mwebExperimentName: 'web_gestalt_visualRefresh',
+  });
+
+  const avatarBackgroundColor = getAvatarColorToken(avatarColorIndex || '06');
+
   return (
-    <Box
-      color="secondary"
-      dangerouslySetInlineStyle={{
-        __style: {
-          // When specifying a padding by percentage, it's always based on the width of the parent container so we get a property that's equal to the width.s
-          paddingBottom: '100%',
-          boxShadow: outline ? `0 0 0 1px ${TOKEN_COLOR_BORDER_AVATAR}` : undefined,
-        },
+    <div
+      className={classnames({
+        [foundationStyles.container]: true,
+        [foundationStyles.outline]: outline && !isInVRExperiment,
+        [foundationStyles['outline-VR']] : outline && isInVRExperiment,
+      })}
+      style={{
+        backgroundColor: isInVRExperiment ? avatarBackgroundColor : 'white',
       }}
-      position="relative"
-      rounding="circle"
     >
-      <Box
-        bottom
-        // top left bottom right constrains the circle to the exact dimensions of the responsive parent square
-        display="flex"
-        justifyContent="center"
-        left
-        position="absolute"
-        right
-        top
-      >
+      <div className={foundationStyles.innerDiv}>
         {children}
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 }
 
 type Props = {
+  avatarColorIndex?: string;
   children?: string | number;
   fontSize?: string;
   outline?: boolean;
@@ -57,6 +57,7 @@ type Props = {
 };
 
 export default function AvatarFoundation({
+  avatarColorIndex,
   children,
   fontSize,
   outline = false,
@@ -65,14 +66,16 @@ export default function AvatarFoundation({
   translate,
   content = 'text',
 }: Props) {
+
   const cs = classnames(styles.icon, avatarStyles.text);
+
   const isInExperiment = useInExperiment({
     webExperimentName: 'web_gestalt_visualRefresh',
     mwebExperimentName: 'web_gestalt_visualRefresh',
   });
 
   return (
-    <ResponsiveFitSizeBox outline={outline}>
+    <ResponsiveFitSizeBox avatarColorIndex={avatarColorIndex} outline={outline}>
       {content === 'text' ? (
         <svg
           preserveAspectRatio="xMidYMid meet"
