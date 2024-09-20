@@ -53,7 +53,7 @@ interface DocumentedProps {
    * Used to indicate if the user is verified.
    */
   verified?: boolean;
-};
+}
 
 type Props = DocumentedProps & Partial<InternalProps>;
 
@@ -65,9 +65,20 @@ type Props = DocumentedProps & Partial<InternalProps>;
  *
  */
 
-function Avatar(props: Props) {
+function Avatar({
+  accessibilityLabel,
+  avatarColorIndex,
+  isFocused,
+  isFocusVisible,
+  isHovered,
+  isPressed,
+  name,
+  outline,
+  size = 'fit',
+  src,
+  verified,
+}: Props) {
   const [isImageLoaded, setIsImageLoaded] = useState(true);
-  const { accessibilityLabel, avatarColorIndex, isFocused, isFocusVisible, isHovered, isPressed, name, outline, size = 'fit', src, verified } = props;
   const width = size === 'fit' ? '100%' : sizes[size];
   const height = size === 'fit' ? '' : sizes[size];
 
@@ -91,7 +102,9 @@ function Avatar(props: Props) {
       width={width}
     >
       {src && isImageLoaded ? (
-        <Mask rounding="circle" wash>  {/* need to handle focus outline here */}
+        <Mask rounding="circle" wash>
+          {' '}
+          {/* need to handle focus outline here */}
           <Image
             alt={accessibilityLabel ?? name}
             color={TOKEN_COLOR_BACKGROUND_AVATAR_PLACEHOLDER}

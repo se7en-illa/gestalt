@@ -1,21 +1,16 @@
 .container {
-  position: relative;
-  padding-bottom: 100%;
   border-radius: 50%;
+  padding-bottom: 100%;
+  position: relative;
 }
+
 .outline {
   box-shadow: 0 0 0 1px var(--token-color-border-avatar); /* replace --token-color-border-avatar with the actual value */
 }
 
-/* .outline-VR {
-  box-shadow: 0 0 0 2px var(--token-color-border-avatar); replace --token-color-border-avatar with the actual value
-}
-*/
-
 .outline-VR {
-  border: 2px solid var(--sema-color-border-focus-inner-default);
   border-radius: var(--sema-rounding-400);
-  box-shadow: 0 0 0 2px var(--token-color-border-avatar); /* replace --token-color-border-avatar with the actual value */
+  outline: 2px solid var(--sema-color-border-focus-outer-default);
 }
 
 .focused {
@@ -25,13 +20,13 @@
 }
 
 .innerDiv {
-  position: absolute;
-  top: 0;
   bottom: 0;
-  left: 0;
-  right: 0;
   display: flex;
+  left: 0;
   justify-content: center;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .defaultBackground {

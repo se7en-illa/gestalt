@@ -9,7 +9,9 @@ import icons from '../icons/index';
 import vrIcons from '../icons-vr-theme/index';
 import TextUI from '../TextUI';
 import typographyStyle from '../Typography.css';
+import useFocusVisible from '../useFocusVisible';
 import useInExperiment from '../useInExperiment';
+import useInteractiveStates from '../utils/useInteractiveStates';
 
 const ICON_SIZE_RATIO = (20 / 48) * 100; // For pixel perfect icon button, we use the icon (20px) to parent container (48px) size ratio
 
@@ -26,16 +28,36 @@ type ResponsiveFitSizeBoxProps = {
 function ResponsiveFitSizeBox({
   avatarColorIndex,
   children,
-  isFocused,
-  isFocusVisible,
-  isHovered,
-  isPressed,
+  isFocused: avatarGroupFocus,
+  isFocusVisible: avatarGroupFocusVisible,
+  isHovered: avatarGroupHovered,
+  isPressed: avatarGroupPressed,
   outline,
 }: ResponsiveFitSizeBoxProps) {
   const isInVRExperiment = useInExperiment({
     webExperimentName: 'web_gestalt_visualRefresh',
     mwebExperimentName: 'web_gestalt_visualRefresh',
   });
+
+  const {
+    handleOnMouseEnter,
+    handleOnMouseLeave,
+    handleOnBlur,
+    handleOnFocus,
+    handleOnMouseDown,
+    handleOnMouseUp,
+    isFocused: defaultIsFocused,
+    isHovered: defaultIsHovered,
+    isActive: defaultIsPressed,
+  } = useInteractiveStates();
+
+  const { isFocusVisible } = useFocusVisible();
+  const isFocused = avatarGroupFocus || defaultIsFocused;
+  const isHovered = avatarGroupHovered || defaultIsHovered;
+  const isPressed = avatarGroupPressed || defaultIsPressed;
+
+  console.log("avatarGroupHovered", avatarGroupHovered);
+  console.log("defaultIsHovered", defaultIsHovered);
 
   const avatarBackgroundColor = getAvatarColorToken(avatarColorIndex || "06", isHovered, isPressed);
 
@@ -47,9 +69,17 @@ function ResponsiveFitSizeBox({
         [foundationStyles['outline-VR']]: outline && isInVRExperiment,
         [foundationStyles.focused]: isInVRExperiment && isFocused && isFocusVisible,
       })}
+      onBlur={handleOnBlur}
+      onFocus={handleOnFocus}
+      onMouseDown={handleOnMouseDown}
+      onMouseEnter={handleOnMouseEnter}
+      onMouseLeave={handleOnMouseLeave}
+      onMouseUp={handleOnMouseUp}
+           role="button"
       style={{
         backgroundColor: isInVRExperiment ? avatarBackgroundColor : "06",
       }}
+      tabIndex={0}
     >
       <div className={foundationStyles.innerDiv}>{children}</div>
     </div>

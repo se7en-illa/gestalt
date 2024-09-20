@@ -12,60 +12,55 @@ interface ColorTokens {
 
 // Need to replace color tokens
 const colorTokens: ColorTokens = {
-  default: {
-    base: TOKEN_COLOR_BORDER_AVATAR,
-    hover: TOKEN_COLOR_BORDER_AVATAR,
-    pressed: TOKEN_COLOR_BORDER_AVATAR,
-  },
   "01": { // redWeak
     base: '#FFD3D1',
-    hover: '#FFD3D1',
-    pressed: '#FFD3D1'
+    hover: '#FBBEBB',
+    pressed: '#F4A8A4'
   },
   "02": { // redDefault
     base: '#FF9494',
-    hover: '#FF9494',
-    pressed: '#FF9494'
+    hover: '#F87777',
+    pressed: '#ED5A5A'
   },
   "03": { // purpleWeak
     base: '#FCD8FC',
-    hover: '#FCD8FC',
-    pressed: '#FCD8FC'
+    hover: '#FAC7FA',
+    pressed: '#F8B5F8'
   },
   "04": { // purpleDefault
     base: '#EFADEF',
-    hover: '#EFADEF',
-    pressed: '#EFADEF'
+    hover: '#E599E5',
+    pressed: '#DA86DA'
   },
   "05": { // blueWeak
     base: '#C5EAF7',
-    hover: '#C5EAF7',
-    pressed: '#C5EAF7'
+    hover: '#A8DDF0',
+    pressed: '#8ECFE6'
   },
   "06": { // blueDefault
     base: '#7CBEDE',
-    hover: '#7CBEDE',
-    pressed: '#7CBEDE'
+    hover: '#58A9D0',
+    pressed: '#4096BF'
   },
   "07": { // greenWeak
     base: '#D0E2A8',
-    hover: '#D0E2A8',
-    pressed: '#D0E2A8'
+    hover: '#BCD090',
+    pressed: '#A7B97E'
   },
   "08": { // greenDefault
     base: '#A8BB63',
-    hover: '#A8BB63',
-    pressed: '#A8BB63'
+    hover: '#93A550',
+    pressed: '#81904C'
   },
   "09": { // orangeWeak
     base: '#FDE7C9',
-    hover: '#FDE7C9',
-    pressed: '#FDE7C9'
+    hover: '#F9D9AE',
+    pressed: '#F4CC95'
   },
   "10": { // orangeDefault
     base: '#FBC55B',
-    hover: '#FBC55B',
-    pressed: '#FBC55B'
+    hover: '#F8B430',
+    pressed: '#F1A613'
   },
 }
 
