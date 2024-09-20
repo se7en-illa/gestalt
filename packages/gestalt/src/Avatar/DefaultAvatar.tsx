@@ -10,16 +10,8 @@ type Props = {
   name: string;
 };
 
-export default function DefaultAvatar({
-  accessibilityLabel,
-  avatarColorIndex,
-  isFocused,
-  isFocusVisible,
-  isHovered,
-  isPressed,
-  name,
-}: Props) {
-  const firstInitial = (name && Array.from(name)[0]?.toUpperCase()) || '';
+export default function DefaultAvatar({ accessibilityLabel, avatarColorIndex, isFocused, isFocusVisible, isHovered, isPressed, name }: Props) {
+  const firstInitial = name ? Array.from(name)[0].toUpperCase() : '';
   const title = accessibilityLabel ?? name;
 
   return (

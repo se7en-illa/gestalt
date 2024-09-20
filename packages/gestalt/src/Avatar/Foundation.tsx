@@ -87,6 +87,7 @@ function ResponsiveFitSizeBox({
 }
 
 
+
 type AvatarFoundationProps = {
   avatarColorIndex?: string;
   children?: string | number;
@@ -188,6 +189,7 @@ export default function AvatarFoundation({
           xmlns="http://www.w3.org/2000/svg"
         >
           <title>Icon</title>
+          <path d={(isInVRExperiment ? vrIcons : icons)['person-add']} />
           <path d={(isInVRExperiment ? vrIcons : icons)['person-add']} />
         </svg>
       ) : null}
