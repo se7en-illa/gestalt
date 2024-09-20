@@ -7,13 +7,20 @@
   box-shadow: 0 0 0 1px var(--token-color-border-avatar); /* replace --token-color-border-avatar with the actual value */
 }
 
+/* .outline-VR {
+  box-shadow: 0 0 0 2px var(--token-color-border-avatar); replace --token-color-border-avatar with the actual value
+}
+*/
+
 .outline-VR {
+  border: 2px solid var(--sema-color-border-focus-inner-default);
+  border-radius: var(--sema-rounding-400);
   box-shadow: 0 0 0 2px var(--token-color-border-avatar); /* replace --token-color-border-avatar with the actual value */
 }
 
 .focused {
-  border-radius: var(--sema-rounding-400);
   border: 2px solid var(--sema-color-border-focus-inner-default);
+  border-radius: var(--sema-rounding-400);
   outline: 2px solid var(--sema-color-border-focus-outer-default);
 }
 
