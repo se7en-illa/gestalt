@@ -23,31 +23,39 @@ type ResponsiveFitSizeBoxProps = {
   outline: boolean;
 };
 
-function ResponsiveFitSizeBox({ avatarColorIndex, children, outline }: ResponsiveFitSizeBoxProps) {
+function ResponsiveFitSizeBox({
+  avatarColorIndex,
+  children,
+  isFocused,
+  isFocusVisible,
+  isHovered,
+  isPressed,
+  outline,
+}: ResponsiveFitSizeBoxProps) {
   const isInVRExperiment = useInExperiment({
     webExperimentName: 'web_gestalt_visualRefresh',
     mwebExperimentName: 'web_gestalt_visualRefresh',
   });
 
-  const avatarBackgroundColor = getAvatarColorToken(avatarColorIndex || '06');
+  const avatarBackgroundColor = getAvatarColorToken(avatarColorIndex || "06", isHovered, isPressed);
 
   return (
     <div
-      className={classnames({
+      className={classnames('container', {
         [foundationStyles.container]: true,
         [foundationStyles.outline]: outline && !isInVRExperiment,
-        [foundationStyles['outline-VR']] : outline && isInVRExperiment,
+        [foundationStyles['outline-VR']]: outline && isInVRExperiment,
+        [foundationStyles.focused]: isInVRExperiment && isFocused && isFocusVisible,
       })}
       style={{
-        backgroundColor: isInVRExperiment ? avatarBackgroundColor : 'white',
+        backgroundColor: isInVRExperiment ? avatarBackgroundColor : "06",
       }}
     >
-      <div className={foundationStyles.innerDiv}>
-        {children}
-      </div>
+      <div className={foundationStyles.innerDiv}>{children}</div>
     </div>
   );
 }
+
 
 type AvatarFoundationProps = {
   avatarColorIndex?: string;
@@ -68,13 +76,16 @@ export default function AvatarFoundation({
   avatarColorIndex,
   children,
   fontSize,
+  isFocused,
+  isFocusVisible,
+  isHovered,
+  isPressed,
   outline = false,
   textAnchor = 'middle',
   title,
   translate,
   content = 'text',
 }: AvatarFoundationProps) {
-
   const cs = classnames(styles.icon, avatarStyles.text);
 
   const isInVRExperiment = useInExperiment({
@@ -83,7 +94,14 @@ export default function AvatarFoundation({
   });
 
   return (
-    <ResponsiveFitSizeBox avatarColorIndex={avatarColorIndex} outline={outline}>
+    <ResponsiveFitSizeBox
+      avatarColorIndex={avatarColorIndex}
+      isFocused={isFocused}
+      isFocusVisible={isFocusVisible}
+      isHovered={isHovered}
+      isPressed={isPressed}
+      outline={outline}
+    >
       {content === 'text' ? (
         <svg
           preserveAspectRatio="xMidYMid meet"
@@ -94,9 +112,23 @@ export default function AvatarFoundation({
         >
           {title ? <title>{title}</title> : null}
           {isInVRExperiment ? (
-            <TextUI align="center" size="lg">
+            // <TextUI align="center" size="lg">
+            //   {children}
+            // </TextUI>
+            <text
+              className={[
+                typographyStyle.antialiased,
+                typographyStyle.sansSerif,
+                typographyStyle.fontWeightSemiBold,
+                translate && avatarStyles[translate], // if addCollaborator button is present, translateX moves numbers closer to the edge
+              ].join(' ')}
+              dy="0.35em"
+              fill={TOKEN_COLOR_TEXT_DEFAULT}
+              fontSize={fontSize}
+              textAnchor={textAnchor}
+            >
               {children}
-            </TextUI>
+            </text>
           ) : (
             <text
               className={[

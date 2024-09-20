@@ -35,3 +35,9 @@ html[dir="rtl"] .translateX10 {
 .text {
   color: var(--color-icon-avatar-default);
 }
+
+.focused {
+  border-radius: var(--sema-rounding-pill, 999px);
+  border: 2px solid var(--sema-color-border-focus-inner-default);
+  outline: 2px solid var(--sema-color-border-focus-outer-default);
+}
